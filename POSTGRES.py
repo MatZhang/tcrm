@@ -89,12 +89,19 @@ for event in events:
     for i in range(len(track.Latitude)):
         pointId = eventId + "-" + str(i)
         print count, pointId, Latitude[i], Longitude[i] 
-        cur.execute("""INSERT INTO THCA18_Points(pointId, Latitude, Longitude,Location)
-                     VALUES(%s,%s,%s,ST_SetSRID(ST_MakePoint(%s, %s),4326))
-                     ON CONFLICT (pointId) DO NOTHING 
-                     RETURNING (pointId, Latitude, Longitude);
-                    """, (pointId, Latitude[i], Longitude[i], Longitude[i], Latitude[i],))
-        
+        cur.execute("""
+                select exists(select 1 from THCA18_Points where pointId=%s)
+                """,(pointId,))
+        rows = cur.fetchall()
+
+        if rows[0][0] == False:
+            cur.execute("""INSERT INTO THCA18_Points(pointId, Latitude, Longitude,Location)
+                         VALUES(%s,%s,%s,ST_SetSRID(ST_MakePoint(%s, %s),4326))
+                         ON CONFLICT (pointId) DO NOTHING 
+                         RETURNING (pointId, Latitude, Longitude);
+                        """, (pointId, Latitude[i], Longitude[i], Longitude[i], Latitude[i],))
+        else:
+            print pointId, " already in the database"
     
     conn.commit() 
     count += 1
