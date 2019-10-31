@@ -71,6 +71,7 @@ PARSERS = {
     'Actions_createdatabase': parseBool,
     'Actions_downloaddata': parseBool,
     'Actions_executeevaluate': parseBool,
+    'Actions_executeimpact': parseBool,
     'DataProcess_inputfile': str,
     'DataProcess_source': str,
     'DataProcess_startseason': int,
@@ -138,6 +139,7 @@ ExecuteTrackGenerator=True
 ExecuteWindfield=True
 ExecuteHazard=True
 ExecuteEvaluate=True
+ExecuteImpact=False
 PlotData=True
 PlotHazard=True
 CreateDatabase=True
@@ -270,7 +272,7 @@ class _ConfigParser(RawConfigParser):
             return
         if self.readonce:
             return
-        RawConfigParser.read(self, filename)
+        RawConfigParser.read(self, filename, encoding='ascii')
         self.readonce = True
 
     def items(self, section):
