@@ -20,6 +20,7 @@ from Utilities.grid import grdRead, grdReadFromNetcdf
 import numpy as np
 import scipy
 import Utilities.stats as stats
+from builtins import str
 
 LOG = logging.getLogger()
 

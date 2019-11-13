@@ -14,7 +14,7 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda config --append channels conda-forge
-- deps='pip numpy scipy matplotlib basemap shapely nose netcdf4 cftime coverage coveralls pycurl pyproj seaborn simplejson sqlite statsmodels libgdal gdal configparser cartopy affine tqdm xarray gxx_linux-64 pthread-stubs'
+- deps='pip future numpy scipy matplotlib basemap shapely nose netcdf4 cftime coverage coveralls pycurl pyproj seaborn simplejson sqlite statsmodels libgdal gdal configparser cartopy affine tqdm xarray gxx_linux-64 pthread-stubs'
 - conda create -q -n tcrm-env --yes $deps "python=$TRAVIS_PYTHON_VERSION"
 - source activate tcrm-env
 branches:

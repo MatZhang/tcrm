@@ -23,6 +23,7 @@ from Utilities.files import flLoadFile
 
 from scipy.stats import scoreatpercentile as percentile
 from PlotInterface.curves import RangeCurve, saveFigure
+from builtins import str
 
 def acf(p, nlags=1):
     """
@@ -133,11 +134,11 @@ class GenerateStats:
         self.prgEndValue = prgEndValue
 
         if not calculateLater:
-            if type(lonLat) is str:
+            if isinstance(lonLat, str):
                 self.lonLat = np.array(flLoadFile(lonLat, delimiter=','))
             else:
                 self.lonLat = lonLat
-            if type(parameter) is str:
+            if isinstance(parameter, str):
                 self.param = np.array(flLoadFile(parameter))
             else:
                 self.param = parameter

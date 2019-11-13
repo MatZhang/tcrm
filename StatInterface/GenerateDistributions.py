@@ -28,7 +28,7 @@ from Utilities.files import flLoadFile, flSaveFile, flStartLog
 
 from netCDF4 import Dataset
 import numpy as np
-
+from builtins import str
 class GenerateDistributions(object):
     """
     Generate the cumulative distribution functions (CDF's)

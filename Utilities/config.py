@@ -14,6 +14,8 @@ import io
 from configparser import RawConfigParser
 #from ast import literal_eval as eval
 
+from builtins import str
+
 def parseBool(txt):
     """
     Parser for boolean options
